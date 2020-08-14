@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Volume nd SurfaceArea</title>
+<style>	
+body{background-image:url("https://cdn.hipwallpaper.com/i/21/60/xLbE4y.jpg")}
+h1{text-align:center;font-size:60px;color:white;}
+h2{padding:80px 0px;font-size:50px;}
+.menu{display:flex;justify-content:space-around;background-color:#C38D9E;padding:5px; flex-wrap: wrap;}
+.menuA{font-size:30px;color:white;text-decoration:none;padding:5px 90px;}
+.menuA:hover{background-color:#2F2FA2;}
+.cont{text-align:center;margin:20px 0px;}
+.lft,.cent{width:24%;border:2px solid red;height:300px;float:left;color:DARKBLUE;}
+.lft{background-color:#85DCB0;}
+.cent{background-color:white;}
+.rgt{width:50%;border:2px solid red;height:300px;display:inline-block;font-size:30px;margin:auto 0px;line-height:45px;vertical-align:middle;background-color:#E8A87C;}
+img{width:100%;height:100%;}
+#myBtn { position: fixed; bottom: 20px; right: 30px; z-index: 99; border: none; background-color: black; color: white; padding: 12px; border-radius: 10px; font-size: 15px; }
+button{font-size:20px;padding:5px;}
+
+footer{color:white;text-align:center;background-color:rgb(7,7,41);font-size:30px;margin-top:80px;}
+
+@media only screen and (max-width:600px){
+	.lft,.rgt{width:100%;}
+	.menu{flex-direction:column;}
+	.menuA{padding:5px;}
+	.cent{height:0%;width:0%;}
+	.rgt{height:auto;}
+}
+</style>
+
+<script>
+var r,unitR,h,unitH,l,unitL,dispV,dispSA,volAns,saAns;
+	const pie=3.142;
+function unitconv(t1,t2){
+	if(t2=="mm")
+		return t1*Math.pow(10,-3);
+	if(t2=="cm")
+		return t1*Math.pow(10,-2);
+	if(t2=="km")
+		return t1*Math.pow(10,3);
+	if(t2=="mm")
+		return t1*Math.pow(10,-3);
+	if(t2=="inch")
+		return t1*2.54*Math.pow(10,-2);
+	if(t2=="ft")
+		return t1*30.48*Math.pow(10,-2);
+	if(t2=="ml")
+		return t1*1.6*Math.pow(10,3);
+	else
+	return t1;
+}
+
+function volm1(inp0,inp1,inp2,inp3,inp4){
+	r=document.getElementById(inp1).value;
+	unitR=document.getElementById(inp2).value;
+	dispV=document.getElementById(inp3);
+	dispSA=document.getElementById(inp4);
+	if(r!==""){
+		r=unitconv(r,unitR);
+		if(inp0==0){
+			volAns=pie*r*r*r*4.0/3;
+			saAns=4*pie*r*r;
+		}
+		else{
+			volAns=r*r*r;
+			saAns=6*r*r;
+	   }
+	   if(volAns.toLocaleString()!=0)
+	   		dispV.innerHTML=volAns.toLocaleString();
+	   else
+	   		dispV.innerHTML=volAns;
+	   if(saAns.toLocaleString()!=0)
+	   		dispSA.innerHTML=saAns.toLocaleString();
+	   else
+	   		dispSA.innerHTML=saAns;
+ }
+	else{
+	alert("Input is incomplete");dispV.innerHTML="[.]";dispSA.innerHTML="[.]";
+}
+}
+
+function volm2(inp0,inp1,inp2,inp3,inp4,inp5,inp6){
+	r=document.getElementById(inp1).value;
+	unitR=document.getElementById(inp2).value;
+	h=document.getElementById(inp3).value;
+	unitH=document.getElementById(inp4).value;	
+	dispV=document.getElementById(inp5);
+	dispSA=document.getElementById(inp6);
+	if(r!=="" && h!==""){
+		r=unitconv(r,unitR);
+		h=unitconv(h,unitH);
+		if(inp0==0){
+			volAns=pie*r*r*h/3;
+			saAns=pie*r*(parseFloat(r)+Math.sqrt(r*r+h*h));
+		}
+		else if(inp0==1){
+			volAns=pie*r*r*h;
+			saAns=parseFloat(2*pie*r*h)+2*pie*r*r;
+	   }
+	   else if(inp0==2){  
+	   	volAns=pie*r*r*h+pie*r*r*r*4.0/3;
+	   	saAns=2*pie*r*h+4*pie*r*r;
+	   }
+	   else {
+	   volAns=r*r*h/3.0;
+	   saAns=parseFloat(h*h)+2*r*Math.sqrt(r*r/4.0+h*h);	   
+	   }
+	   if(volAns.toLocaleString()!=0)
+	   		dispV.innerHTML=volAns.toLocaleString();
+	   else
+	   		dispV.innerHTML=volAns;
+	   if(saAns.toLocaleString()!=0)
+	   		dispSA.innerHTML=saAns.toLocaleString();
+	   else
+	   		dispSA.innerHTML=saAns;
+ }
+	else{
+	alert("Input is incomplete");dispV.innerHTML="[.]";dispSA.innerHTML="[.]";
+}
+}
+
+
+function volm3(inp0,inp1,inp2,inp3,inp4,inp5,inp6,inp7,inp8){
+	r=document.getElementById(inp1).value;
+	unitR=document.getElementById(inp2).value;
+	h=document.getElementById(inp3).value;
+	unitH=document.getElementById(inp4).value;	
+	l=document.getElementById(inp5).value;
+	unitL=document.getElementById(inp6).value;		
+	dispV=document.getElementById(inp7);
+	dispSA=document.getElementById(inp8);
+			
+	if(r!=="" && h!=="" && l!==""){
+		r=unitconv(r,unitR);
+		h=unitconv(h,unitH);
+		l=unitconv(l,unitL);
+		if(inp0==0){
+			volAns=r*h*l;
+			saAns=2*(r*h+h*l+l*r);
+		}
+		else if(inp0==1){
+			volAns=pie*l*(r*r+h*h+r*h)/3;
+			saAns=pie*(parseFloat(r)+parseFloat(h))*Math.sqrt((r-h)*(r-h)+l*l);
+	   }
+	   else if(inp0==2){
+	   		volAns=pie*l*Math.abs(r*r-h*h);
+	   		saAns=parseFloat(2*pie*r*l)+parseFloat(2*pie*h*l)+2*pie*Math.abs(r*r-h*h);
+	   }
+	   if(volAns.toLocaleString()!=0)
+	   		dispV.innerHTML=volAns.toLocaleString();
+	   else
+	   		dispV.innerHTML=volAns;
+	   if(saAns.toLocaleString()!=0)
+	   		dispSA.innerHTML=saAns.toLocaleString();
+	   else
+	   		dispSA.innerHTML=saAns;
+ }
+	else{
+	alert("Input is incomplete");dispV.innerHTML="[.]";dispSA.innerHTML="[.]";
+}
+
+}
+
+
+
+mybutton = document.getElementById("myBtn");
+
+
+
+
+function topFunction() {
+  document.documentElement.scrollTop = 0; 
+} 
+</script>
+<title></title>
+</head>
+
+<body id="bod" onscroll="scrollToTop()">
+<h1>Volume & Surface Area Calculator</h1>
+<div class="menu">
+<div><a href="#sph" class="menuA">Sphere</a></div>
+<div><a href="#con" class="menuA">Cone</a></div>
+<div><a href="#cyl" class="menuA">Cylinder</a></div>
+<div><a href="#cube" class="menuA">Cube</a></div>
+<div><a href="#cubo" class="menuA">Cuboid</a></div>
+</div>
+<div class="menu">
+<div><a href="#cap" class="menuA">Capsule</a></div>
+<div><a href="#fru" class="menuA">Frustum</a></div>
+<div><a href="#tub" class="menuA">Tube</a></div>
+<div><a href="#sqpy" class="menuA">Square Pyramid</a></div>
+</div>
+
+<div id="sph" class="cont">
+<div class="lft">
+<h2>SPHERE</h2>
+</div>
+<div class="cent"><img src="https://javatutoring.com/wp-content/uploads/2017/07/Sphere-768x745.png" ></div>
+<div class="rgt">
+<span>Radius</span>
+<input type="number" id="sphR">
+<select id="unitsphR">
+<option value="m" selected>m</option>
+<option value="km">km</option>
+<option value="cm">cm</option>
+<option value="mm">mm</option>
+<option value="inch">inch</option>
+<option value="ft">foot</option>
+<option value="ml">mile</option>
+</select><br>
+<button onclick="volm1(0,'sphR','unitsphR','sphvol','sphsa')">Calculate</button>
+<div>Volume=<span id="sphvol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="sphsa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+<div id="con" class="cont">
+<div class="lft">
+<h2>CONE</h2>
+</div>
+<div class="cent"><img src="https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2019/10/22043429/Cone_geometry-231x300.png" ></div>
+<div class="rgt">
+<span>Radius</span>
+<input type="number" id="conR">
+<select id="unitconR">
+<option value="m" selected>m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Height</span>
+<input type="number" id="conH">
+<select id="unitconH">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<button onclick="volm2(0,'conR','unitconR','conH','unitconH','convol','consa')">Calculate</button>
+<div>Volume=<span id="convol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="consa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+<div id="cyl" class="cont">
+<div class="lft">
+<h2>CYLINDER</h2>
+</div>
+<div class="cent"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cylinder_geometry.svg/220px-Cylinder_geometry.svg.png" ></div>
+<div class="rgt">
+<span>Radius</span>
+<input type="number" id="cylR">
+<select id="unitcylR">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Height</span>
+<input type="number" id="cylH">
+<select id="unitcylH">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<button onclick="volm2(1,'cylR','unitcylR','cylH','unitcylH','cylvol','cylsa')">Calculate</button>
+<div>Volume=<span id="cylvol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="cylsa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+<div id="cube" class="cont">
+<div class="lft">
+<h2>CUBE</h2>
+</div>
+<div class="cent"><img src="https://sites.google.com/site/funproblemsolving/_/rsrc/1290453688334/what-every-mathlete-should-know/formula-for-perimeter-area-and-volumes/Untitleddrawing%20%288%29.jpg" ></div>
+<div class="rgt">
+<span>Length</span>
+<input type="number" id="cubeR">
+<select id="unitcubeR">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<button onclick="volm1(1,'cubeR','unitcubeR','cubevol','cubesa')">Calculate</button>
+<div>Volume=<span id="cubevol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="cubesa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+<div id="cubo" class="cont">
+<div class="lft">
+<h2>CUBOID</h2>
+</div>
+<div class="cent"><img src="https://breathmath.files.wordpress.com/2016/11/cuboid.png?w=825" ></div>
+<div class="rgt">
+<span>Length</span>
+<input type="number" id="cuboR">
+<select id="unitcuboR">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Breadth</span>
+<input type="number" id="cuboB">
+<select id="unitcuboB">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Height</span>
+<input type="number" id="cuboH">
+<select id="unitcuboH">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<button onclick="volm3(0,'cuboR','unitcuboR','cuboB','unitcuboB','cuboH','unitcuboH','cubovol','cubosa')">Calculate</button>
+<div>Volume=<span id="cubovol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="cubosa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+<div id="cap" class="cont">
+<div class="lft">
+<h2>CAPSULE</h2>
+</div>
+<div class="cent"><img src="https://www.researchgate.net/profile/Geoffrey_Morrison/publication/318776293/figure/fig2/AS:753032035840002@1556548236890/A-capsule-geometry-consisting-of-a-cylinder-with-hemispherical-ends-The-capsule-geometry.png" ></div>
+<div class="rgt">
+<span>Radius</span>
+<input type="number" id="capR">
+<select id="unitcapR">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Height</span>
+<input type="number" id="capH">
+<select id="unitcapH">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<button onclick="volm2(2,'capR','unitcapR','capH','unitcapH','capvol','capsa')">Calculate</button>
+<div>Volume=<span id="capvol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="capsa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+<div id="fru" class="cont">
+<div class="lft">
+<h2>FRUSTUM</h2>
+</div>
+<div class="cent"><img src="https://media.geeksforgeeks.org/wp-content/uploads/frustum.jpg" ></div>
+<div class="rgt">
+<span>Radius<sub>1</sub></span>
+<input type="number" id="fruR1">
+<select id="unitfruR1">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Radius<sub>2</sub></span>
+<input type="number" id="fruR2">
+<select id="unitfruR2">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Height</span>
+<input type="number" id="fruH">
+<select id="unitfruH">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<button onclick="volm3(1,'fruR1','unitfruR1','fruR2','unitfruR2','fruH','unitfruH','fruvol','frusa')">Calculate</button>
+<div>Volume=<span id="fruvol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="frusa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+<div id="tub" class="cont">
+<div class="lft">
+<h2>TUBE</h2>
+</div>
+<div class="cent"><img src="https://cdn1.iconfinder.com/data/icons/charts-16/154/tube-figure-geometry-complex-object-512.png" ></div>
+<div class="rgt">
+<span>Radius<sub>1</sub></span>
+<input type="number" id="tubR1">
+<select id="unittubR1">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Radius<sub>2</sub></span>
+<input type="number" id="tubR2">
+<select id="unittubR2">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Height</span>
+<input type="number" id="tubH">
+<select id="unittubH">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<button onclick="volm3(2,'tubR1','unittubR1','tubR2','unittubR2','tubH','unittubH','tubvol','tubsa')">Calculate</button>
+<div>Volume=<span id="tubvol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="tubsa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+<div id="sqpy" class="cont">
+<div class="lft">
+<h2>SQUARE PYRAMID</h2>
+</div>
+<div class="cent"><img src="https://cdn1.byjus.com/wp-content/uploads/2016/04/Volume-of-a-Square-Pyramid-Formula-1.png" ></div>
+<div class="rgt">
+<span>Base Length</span>
+<input type="number" id="sqpyR">
+<select id="unitsqpyR">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<span>Height</span>
+<input type="number" id="sqpyH">
+<select id="unitsqpyH">
+<option value="m">m</option><option value="km">km</option><option value="cm">cm</option><option value="mm">mm</option><option value="inch">inch</option><option value="ft">foot</option><option value="ml">mile</option>
+</select><br>
+<button onclick="volm2(3,'sqpyR','unitsqpyR','sqpyH','unitsqpyH','sqpyvol','sqpysa')">Calculate</button>
+<div>Volume=<span id="sqpyvol">[.]</span>m<sup>3</sup></div>
+<div>Surface Area=<span id="sqpysa">[.]</span>m<sup>2</sup></div>
+</div>
+</div>
+
+ <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> 
+ 
+ 
+ <footer>
+       <a href="https://www.facebook.com/pritam.mishra.1401/" class="buttonload" title="Facebook" target="_blank">
+  		<i class="fa fa-facebook-square" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
+  		<a href="https://www.linkedin.com/in/pritam76mishra" class="buttonload" title="LinkedIn" target="_blank">
+ 		 <i class="fa fa-linkedin-square" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
+ 		 <a href="https://www.instagram.com/_pritam___m/" class="buttonload" title="Instagram" target="_blank">
+ 		 <i class="fa fa-instagram" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
+ 		 <a href="https://github.com/Pritam76" class="buttonload" title="GitHub" target="_blank">
+ 		 <i class="fa fa-github" style="font-size:30px;padding:10px 30px;color:white;" ></i></a><br>
+ 		 Designed by PritamMishra
+ </footer>
+ 
+</body>
+
+
+</html>
