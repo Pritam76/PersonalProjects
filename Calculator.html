@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>New Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+button{width:22%;height:13%;font-size:45px;color:rgb(0,220,0);background-color:rgb(30,20,20);}
+button:hover{color:rgb(0,220,0);background-color:black;}
+#equals{width:129px;}
+#disp{border:2px solid grey;width:88%;height:10%;overflow:auto;font-size:45px;padding:5px;margin:0 auto;}
+#cont{text-align:center;width:95%;margin:0 auto;}
+#title{font-size:90px;margin:0px;color:gold;}
+body{background-image:url('https://mir-s3-cdn-cf.behance.net/project_modules/disp/496ecb14589707.562865d064f9e.png');background-size:100% 100%;width:50%;margin:0 auto;}
+
+footer{color:white;text-align:center;background-color:rgb(7,7,41);font-size:30px;margin-top:80px;}
+
+@media only screen and (max-width:600px){
+#title{font-size:60px;color:gold;}
+#button{width:20%;}
+body{width:auto;}
+}
+</style>
+
+
+<script>
+var old,inpS,k,lk,m,op1,a,n,b,out,q;
+inpS=3;
+function inp(ch){
+if(/\D/.test(ch))
+	inpS=inpS+1;
+else
+	inpS=0;
+old=document.getElementById("disp").innerHTML;
+if(inpS<2 ||(ch=="-")||(ch=="(")){
+	document.getElementById("disp").innerHTML=old+ch;
+}
+else
+	alert("Please input a Digit");
+
+old=document.getElementById("disp").innerHTML;
+if(old.endsWith("---")||old.endsWith("+--")||old.endsWith("*--")||old.endsWith("/--")){
+	old=old.substring(0,old.length-1);
+	document.getElementById("disp").innerHTML=old;
+}
+if(old.endsWith("--")){
+	old=old.substring(0,old.length-2);
+	document.getElementById("disp").innerHTML=old+"+";
+}
+if(old.endsWith(")"))
+	inpS=0;
+	
+if(old.endsWith("/0")){
+	alert("Cannot divide by 0");	old=old.substring(0,old.length-1);document.getElementById("disp").innerHTML=old;inpS=3;
+}
+if(old.endsWith("/-0")){
+	alert("Cannot divide by -0");	old=old.substring(0,old.length-2);document.getElementById("disp").innerHTML=old;inpS=3;
+}
+
+}	
+function answ(){
+	out=document.getElementById("disp").innerHTML;
+	var neg=1,negb=1;
+	if(inpS==0 &&  document.getElementById("disp").innerHTML!=""){
+		k=document.getElementById("disp").innerHTML;
+		out=eval(k);
+		document.getElementById("disp").innerHTML=out;
+	}
+		
+	else
+		alert("Please write the entire expression before pressing the =");
+		
+}
+function backsp(){
+	old=document.getElementById("disp").innerHTML;
+	if(old.length==0)
+		alert("Empty");
+	else if(old.length==1)
+		document.getElementById("disp").innerHTML="";
+	else{
+		document.getElementById("disp").innerHTML=old.substring(0,old.length-1);
+		k=document.getElementById("disp").innerHTML;
+		lk=k.charAt(k.length-1);
+		if(lk=="+" || lk=="-" || lk=="*" || lk=="/")
+			inpS=1
+		else
+			inpS=0;
+		}
+}
+function clearsc(){
+	document.getElementById("disp").innerHTML="";inpS=3;
+}
+
+
+
+</script>
+
+</head>
+
+
+<body>
+<div id="cont">
+  <p id="title">Calculator<i class="fa fa-wrench"></i></p>
+  <p id="disp"></p>
+  <div class="row">
+    <button value='7' onclick="inp(this.value)">7</button>
+    <button value='8' onclick="inp(this.value)">8</button>
+    <button value='9' onclick="inp(this.value)">9</button>
+    <button id='clear'  onclick="clearsc()">C</button>
+  </div>
+
+  <div class="row">
+    <button value='4' onclick="inp(this.value)">4</button>
+    <button value='5' onclick="inp(this.value)">5</button>
+    <button value='6' onclick="inp(this.value)">6</button>
+    <button id='back' onclick="backsp()"><</button>   
+  </div>
+
+  <div class="row">
+    <button value='1' onclick="inp(this.value)">1</button>
+    <button value='2' onclick="inp(this.value)">2</button> 
+    <button value='3' onclick="inp(this.value)">3</button>   
+    <button value='%' onclick="inp(this.value)">%</button>        
+  </div>
+  
+  	<div class="row">
+	<button value='(' onclick="inp(this.value)">(</button>
+	<button value='0' onclick="inp(this.value)">0</button>
+	<button value=')' onclick="inp(this.value)">)</button>
+	<button value='**' onclick="inp(this.value)" id="poww">POW</button>	
+  	</div>
+
+  <div class="row">
+  	<button value='/' onclick="inp(this.value)">/</button>
+  	<button value='*' onclick="inp(this.value)">x</button>
+    <button value='+' onclick="inp(this.value)">+</button>
+    <button value='-' onclick="inp(this.value)">-</button> 
+  </div>
+  <div class="row">
+	<button id="dot" value='.' onclick="inp(this.value)">.</button>
+	<button id='equals 'value='=' onclick="answ()">=</button>
+	</div>	
+
+ <footer>
+       <a href="https://www.facebook.com/pritam.mishra.1401/" class="buttonload" title="Facebook" target="_blank">
+  		<i class="fa fa-facebook-square" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
+  		<a href="https://www.linkedin.com/in/pritam76mishra" class="buttonload" title="LinkedIn" target="_blank">
+ 		 <i class="fa fa-linkedin-square" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
+ 		 <a href="https://www.instagram.com/_pritam___m/" class="buttonload" title="Instagram" target="_blank">
+ 		 <i class="fa fa-instagram" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
+ 		 <a href="https://github.com/Pritam76" class="buttonload" title="GitHub" target="_blank">
+ 		 <i class="fa fa-github" style="font-size:30px;padding:10px 30px;color:white;" ></i></a><br>
+ 		 Designed by PritamMishra
+ </footer>
+
+
+
+</body>
+
+</html>
