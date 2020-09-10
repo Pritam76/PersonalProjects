@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Weather 24</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@1,500&family=Rubik:wght@800&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <style>
+    *{width:100%;text-align:center;}
+    
+    body{background-color:black;}
+    h1{font-family: 'Anton', sans-serif;font-family: 'Playfair Display', serif;font-family: 'Rubik', sans-serif;background-color:purple;color:white;}
+  	#temp{font-size:3em;}
+    .neonG{background-color:#FFD700;}
+    .neonR{background-color:#FF6600;}
+  </style>
+  <script>
+  var lati,longi;
+  	function Start(){
+    
+    	if (navigator.geolocation) {
+        	navigator.geolocation.getCurrentPosition(showPosition);} 
+      	else { 
+        	x.innerHTML = "Geolocation is not supported by this browser.";}
+    }
+    function showPosition(position) {
+      lati=position.coords.latitude;
+      longi=position.coords.longitude;
+      document.getElementById("lati").innerHTML = position.coords.latitude; 
+      document.getElementById("longi").innerHTML = position.coords.longitude;
+      	const Http = new XMLHttpRequest();
+		const url='https://api.openweathermap.org/data/2.5/onecall?lat=' + lati + '&lon=' + longi + '&exclude=hourly,daily&appid=fdf2f2de3c5c43feff25b6a3ded9c279';
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange = (e) => {
+          var myJSON = JSON.parse(Http.responseText);
+          console.log(myJSON.lat);
+          document.getElementById("temp").innerHTML=parseInt(myJSON.current.temp)-273;
+          document.getElementById("press").innerHTML=myJSON.current.pressure;
+          document.getElementById("feels").innerHTML=parseInt(myJSON.current.feels_like)-273;
+          document.getElementById("humidity").innerHTML=myJSON.current.humidity;
+          let uts1=myJSON.current.sunrise;
+          var sunrisedate = new Date(uts1 * 1000);
+          if(sunrisedate.getMinutes()>9)
+          	document.getElementById("sunrise").innerHTML=parseInt(sunrisedate.getHours())+":"+sunrisedate.getMinutes();
+          else
+          	document.getElementById("sunrise").innerHTML=parseInt(sunrisedate.getHours())+":0"+sunrisedate.getMinutes();
+          let uts2=myJSON.current.sunset;
+          var sunsetdate = new Date(uts2 * 1000);
+          if(sunsetdate.getMinutes()<10)
+          	document.getElementById("sunset").innerHTML=parseInt(sunsetdate.getHours())-12+":0"+sunsetdate.getMinutes();
+          else
+       	    document.getElementById("sunset").innerHTML=parseInt(sunsetdate.getHours())-12+":"+sunsetdate.getMinutes();
+          getOtherDays1();
+		}
+    }
+    function getOtherDays1(){
+    	let date1DB = new Date()
+        let yesterday = new Date(date1DB)
+        yesterday.setDate(yesterday.getDate() - 1)
+        let unixTimeStamp = Math.floor(yesterday.getTime() / 1000)  
+        let Http2 = new XMLHttpRequest();
+        let url2='https://api.openweathermap.org/data/2.5/onecall/timemachine?lat='+lati+'&lon='+longi+'&dt='+unixTimeStamp +'&exclude=hourly,daily&appid=fdf2f2de3c5c43feff25b6a3ded9c279';
+          Http2.open("GET", url2);
+          Http2.send();
+          Http2.onreadystatechange = (e) => {
+          let myJSON2 = JSON.parse(Http2.responseText);
+    	  document.getElementById("Day1B").innerHTML=parseInt(myJSON2.current.temp)-273;
+        	getOtherDays2();
+          }
+    }
+    function getOtherDays2(){
+    	let date1DB = new Date()
+        let yesterday = new Date(date1DB)
+        yesterday.setDate(yesterday.getDate() - 2)
+        let unixTimeStamp = Math.floor(yesterday.getTime() / 1000)  
+        let Http2 = new XMLHttpRequest();
+        let url2='https://api.openweathermap.org/data/2.5/onecall/timemachine?lat='+lati+'&lon='+longi+'&dt='+unixTimeStamp +'&exclude=hourly,daily&appid=fdf2f2de3c5c43feff25b6a3ded9c279';
+          Http2.open("GET", url2);
+          Http2.send();
+          Http2.onreadystatechange = (e) => {
+          let myJSON2 = JSON.parse(Http2.responseText);
+    	  document.getElementById("Day2B").innerHTML=parseInt(myJSON2.current.temp)-273;
+        	getOtherDays3();
+          }
+    }
+     function getOtherDays3(){
+    	let date1DB = new Date()
+        let yesterday = new Date(date1DB)
+        yesterday.setDate(yesterday.getDate() - 3)
+        let unixTimeStamp = Math.floor(yesterday.getTime() / 1000)  
+        let Http2 = new XMLHttpRequest();
+        let url2='https://api.openweathermap.org/data/2.5/onecall/timemachine?lat='+lati+'&lon='+longi+'&dt='+unixTimeStamp +'&exclude=hourly,daily&appid=fdf2f2de3c5c43feff25b6a3ded9c279';
+          Http2.open("GET", url2);
+          Http2.send();
+          Http2.onreadystatechange = (e) => {
+          let myJSON2 = JSON.parse(Http2.responseText);
+    	  document.getElementById("Day3B").innerHTML=parseInt(myJSON2.current.temp)-273;
+        	
+          }
+    }
+   
+  
+  </script>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h1>Weather24</h1>
+  <hr>
+  <button onclick="Start()" type="button" class="btn btn-dark">Start</button>
+  <div class="d-flex">
+    <div class="p-2 neonR">Latitude:<br><span id="lati">--</span>&deg;</div>
+    <div class="p-2 neonG">Longitude:<br><span id="longi">--</span>&deg;</div>
+  </div>
+  <div class="p-3 text-danger">
+  	<span id="temp">--</span>&deg;C<br>
+  </div>
+  <div class="d-flex p-2">
+    <div class="p-2 neonR">Pressure<br><span id="press">--</span>&deg;</div>
+    <div class="p-2 neonG">Feels like<br><span id="feels">--</span>&deg;</div>
+    <div class="p-2 neonR">Humidity<br><span id="humidity">--</span>&deg;</div>
+  </div>
+    <div class="d-flex p-2">
+    <div class="p-2 bg-success">Sunrise<br><span id="sunrise">--</span> A.M.</div>
+    <div class="p-2 bg-primary">Sunset<br><span id="sunset">--</span> P.M.</div>
+  </div>
+  <hr>
+  <p class="text-warning">History</p>
+  <div class="d-flex">
+    <div class="p-2 neonR">1day back<br><span id="Day1B">--</span>&deg;</div>
+    <div class="p-2 neonG">2 days back<br><span id="Day2B">--</span>&deg;</div>
+    <div class="p-2 neonR">3 days back<br><span id="Day3B">--</span>&deg;</div>
+  </div>
+   <hr>
+   <footer>
+   Developed by:<br>
+   <h3 class="text-success">Pritam Mishra</h3>
+   <div class="d-flex">
+    <div>
+    	<a href="https://www.linkedin.com/in/pritam76mishra" class="buttonload" title="LinkedIn" target="_blank">
+ 		<i class="fa fa-linkedin-square" style="font-size:30px;padding:10px 5px 10px 0px;color:white;" ></i></a>
+    </div>
+    <div>
+    	<a href="https://www.facebook.com/pritam.mishra.1401/" class="buttonload" title="Facebook" target="_blank">
+    	<i class="fa fa-facebook-square" style="font-size:30px;padding:10px 5px;color:white;" ></i></a>
+  		
+    </div>
+    <div>
+    	<a href="https://www.instagram.com/_pritam___m/" class="buttonload" title="Instagram" target="_blank">
+ 		<i class="fa fa-instagram" style="font-size:30px;padding:10px 5px;color:white;" ></i></a>   
+    </div>
+    <div>
+    	<a href="https://github.com/Pritam76/PersonalProjects" class="buttonload" title="GitHub" target="_blank">
+ 		<i class="fa fa-github" style="font-size:30px;padding:10px 0px 10px 5px;color:white;" ></i></a><br>  
+    </div>
+  </div>
+
+   </footer>
+ 
+
+</div>
+
+</body>
+</html>
+
