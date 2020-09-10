@@ -42,9 +42,9 @@ a{text-decoration:none;padding:0px 20px;}
 #hobbies{font-size:60px;text-align:center;}
 .hobkey{border-right:12px solid rgb(80, 202, 64);border-left:12px solid rgb(80, 202, 64);borer-radius:50%;}
 
-	#proj1stick{border:1px solid red;width:20%;height:20px;background-color:red;display:inline-block;}
-	#proj2stick{border:1px solid red;width:40%;height:20px;background-color:red;display:inline-block;}
-	#proj3stick{border:1px solid red;width:60%;height:20px;background-color:red;display:inline-block;}
+	#proj1stick{border:1px solid red;width:0%;height:20px;background-color:red;display:inline-block;transition:1s;}
+	#proj2stick{border:1px solid red;width:0%;height:20px;background-color:red;display:inline-block;transition:1s;}
+	#proj3stick{border:1px solid red;width:0%;height:20px;background-color:red;display:inline-block;transition:1.5s;}
 	.ProjectA{font-size:40px;}
 
 footer{color:white;text-align:center;background-color:rgb(7,7,41);font-size:30px;margin-top:80px;}
@@ -83,7 +83,7 @@ footer{color:white;text-align:center;background-color:rgb(7,7,41);font-size:30px
 function myFunction(){
 	var tr=document.body.scrollTop;
 
-	if(tr>450)
+	if(tr>250)
 		document.getElementById("about").style["opacity"]="1";
 	if(tr>1000)
 		{
@@ -94,10 +94,16 @@ function myFunction(){
   			for (var i = 0; i < allu.length; i++) {
   			allu[i].style["opacity"] = "1";}
 		}
-		if(tr>1700)
+		if(tr>1400)
 			document.getElementById("tscont").style["opacity"]="1";
-		if(tr>2100)
+		if(tr>1800)
 			document.getElementById("hobcont").style["opacity"]="1";
+		if(tr>2200){
+			document.getElementById("proj1stick").style["width"]="20%";
+			document.getElementById("proj2stick").style["width"]="40%";
+			document.getElementById("proj3stick").style["width"]="60%";
+		}
+			
 }
 
 </script>
@@ -153,7 +159,7 @@ function myFunction(){
 <div class="edulef"><b><br>National Institute of Technology, Tiruchirappalli </b><br>
 		Electronics and Communication Engineering   <br >
 		(minor in CSE)<br>
-		<span class="mark">CGPA : 9.07</span></div>	
+		<span class="mark">CGPA : 9.02</span></div>	
 <br>
 <div class="edurig" style="border-right:10px solid blue;" id="one"><b><br>2015-2017</b><br>College</div>
 <div class="edulef"><b><br>D.A.V. PUBLIC SCHOOL,BHUBANESWAR  </b><br>
@@ -220,7 +226,9 @@ ModernWarfare2,3 EACricket07 ViceCity<br><br>
 <div id='proj1stick'></div><span><a href="https://raw.githack.com/Pritam76/PersonalProjects/master/Calculator.html" target="_blank" class="ProjectA"> Calculator</a></span><br>
 <div id='proj2stick'></div><span><a href="https://raw.githack.com/Pritam76/PersonalProjects/master/Restaurant.html" target="_blank" class="ProjectA"> Restaurant</a></span><br>
 <div id='proj3stick'></div><span><a href="https://raw.githack.com/Pritam76/PersonalProjects/master/Volume&SurfaceArea.html" target="_blank" class="ProjectA">Volume&SurfaceArea</a></span><br>
+
 <footer>
+ 		 Designed by PritamMishra<br>
        <a href="https://www.facebook.com/pritam.mishra.1401/" class="buttonload" title="Facebook" target="_blank">
   		<i class="fa fa-facebook-square" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
   		<a href="https://www.linkedin.com/in/pritam76mishra" class="buttonload" title="LinkedIn" target="_blank">
@@ -228,8 +236,8 @@ ModernWarfare2,3 EACricket07 ViceCity<br><br>
  		 <a href="https://www.instagram.com/_pritam___m/" class="buttonload" title="Instagram" target="_blank">
  		 <i class="fa fa-instagram" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
  		 <a href="https://github.com/Pritam76" class="buttonload" title="GitHub" target="_blank">
- 		 <i class="fa fa-github" style="font-size:30px;padding:10px 30px;color:white;" ></i></a><br>
- 		 Designed by PritamMishra
+ 		 <i class="fa fa-github" style="font-size:30px;padding:10px 30px;color:white;" ></i></a>
+
  </footer>
 
 </body>
