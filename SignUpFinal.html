@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Page</title>
+
+<style>
+form{ width:70%;  text-align:center; margin:auto;background-color:lightblue;}
+label,input{ font-size:27px; }
+#pgone{display:block;}
+#pgtwo{display:none;margin:100px auto;}
+body{background-image:url('mus2.jpg');}
+#signup{font-size:40px;margin:30px auto;border-bottom:9px double rgb(0,220,0);}
+#next,#sub{font-size:30px;padding:10px;border:6px black ridge;width:15%;margin: 20px auto;color:rgb(0,220,0);background-color:black;box-shadow:15px 15px 17px rgba(0,0,0,0.8);transition:0.5s;}
+#next:hover, #sub:hover{box-shadow:0px 0px rgba(0,0,0,0.2);}
+</style>
+
+<script type="text/javascript">
+var t1,t2,t3,t4,mo,text,err,fn,ag,em,mn,ginM,ginF,ginE,ginA,A,B,C,D,cou,cop;
+cou=0;cop=0;
+function validMobile(mob){
+	ginM=true;
+	err=document.getElementById("err");
+	t1=!(/\D/.test(mob.value));
+	if(t1==false){
+			text="Invalid Contact Number";}
+	if(mob.value=="9078678747"){
+		text="Your mobile number has already been Registered";t1=false;}
+	if(mob.value["length"]!=10 || mob.value["length"]==0){
+		text="Invalid Contact Number";t1=false;}
+		
+	if(t1==false){
+		err.innerHTML=text;
+	}
+	else{
+		err.innerHTML="[.]";t1=true;}
+}
+
+function validFN(mob){
+	ginF=true;
+	err=document.getElementById("err");
+	t2=!(/\d/.test(mob.value));
+	text="Invalid Full Name";
+	if(mob.value=="Pritam Mishra" || mob.value=="pritam mishra"){
+	text="You have already been Registered";t2=false;}
+	if(t2==false)
+	err.innerHTML=text;
+	else
+	err.innerHTML="[.]";
+}
+
+function validAge(mob){
+	ginA=true;
+	err=document.getElementById("err");
+	t3=mob.value>=18;
+	if(t3==false)
+		err.innerHTML="Age below 18";
+	else
+		err.innerHTML="[.]";
+}
+
+function validEmail(mob){
+	ginE=true;
+	err=document.getElementById("err");
+	t4=mob.value.endsWith('@gmail.com');
+	if(t4==false){
+			text="Invalid Email ID";}
+	if(mob.value=="abc@gmail.com"){
+		text="Your Email ID has already been Registered";t4=false;}
+	if(t4==false){
+		err.innerHTML=text;
+	}
+	else{
+		err.innerHTML="[.]";t4=true;}
+}
+
+function Validity(){
+	fn=document.getElementById("fn");
+	ag=document.getElementById("ag");
+	mn=document.getElementById("mob");
+	em=document.getElementById("em");
+	A=(ginF==true) && (t2!=false) && (fn.value!="");
+	B=(ginE==true) && (t4!=false) && (em.value!="");
+	C=(ginM==true) && (t1!=false) && (mn.value!="");
+	D=(ginA==true) && (t3!=false);
+	
+	if(A==true && B==true && C==true && D==true){
+	document.getElementById("pgtwo").style.display="block";
+	document.getElementById("pgone").style.display="none";
+	}
+	else
+	alert("AINT HAPPENING");
+}
+
+function validUsername(mob){
+	cou=1;
+	if(mob.value=="pritam"){
+		text="Username already Taken!";
+	}
+	else
+		cou=2;
+	if(cou==1)
+			document.getElementById("err2").innerHTML=text;
+	else
+			document.getElementById("err2").innerHTML="[.]";
+}
+
+function validPass(mob){
+	cop=1;
+	if(/\d/.test(mob.value))
+		cop=2;
+	else
+		text="Password should have atleast a digit in it";
+	if(cop==1)
+		document.getElementById("err2").innerHTML=text;
+	else
+		document.getElementById("err2").innerHTML="[.]";
+}
+
+function validCPass(mob){
+	cop=3;
+	if(document.getElementById("pas").value==mob.value)
+		document.getElementById("err2").innerHTML="[.]";
+	else
+		document.getElementById("err2").innerHTML="aint matching";;
+}
+
+function subbut(mob){
+	if(document.getElementById("pas").value==document.getElementById("cpas").value && cou==2 && cop==2)
+	mob.type="submit";
+	else{
+	mob.type="button";
+	document.getElementById("err2").innerHTML="Check The Inputs";
+}
+}
+
+
+</script>
+
+</head>
+
+
+<body>
+<div id="cont">
+<form action="prTunes.html">
+<div id='signup'><strong>SIGN UP for prTunes</strong></div>
+<div id="pgone"><br>
+<label for="fn" style="text-transform:capitalize;" onfocusout='validFN(this)'>Full Name:</label>
+<input type='text' id="fn" style="text-transform:capitalize;" onfocusout='validFN(this)' required></input><br> <br>
+<label for="em">E-mail ID:</label>
+<input type='text' id="em" onfocusout="validEmail(this)" required></input><br><br>
+<label for="mob">Contact no.:</label>
+<input type='text' id="mob" onfocusout="validMobile(this)" maxlength="10" required></input><br><br><br>
+<label for="ag">Age:</label>
+<input type='number' id="ag" onfocusout="validAge(this)" required></input><br><br>
+<p id="err" style="font-size:20px;color:red;">[.]</p>
+<div id='next' onclick="Validity()">NEXT</div>
+</div>
+
+<div id="pgtwo">
+<label for="un">User Name:</label>
+<input type='text' id="un" onfocusout="validUsername(this)"></input> <br><br>
+<label for="pas">Password:</label>
+<input type='text' id="pas" onfocusout="validPass(this)"></input><br><br>
+<label for="cpas">Confirm Password:</label>
+<input type='text' id="cpas" onfocusout="validCPass(this)"></input><br><br>
+<p id="err2">[.]</p>
+<button type='button' id="sub" onmouseover="subbut(this)">SIGN</button>
+</div>
+</form>
+</div>
+</body>
+
+</html>

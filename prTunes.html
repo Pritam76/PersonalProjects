@@ -1,0 +1,286 @@
+<!DOCTYPE HTML> 
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>prTunes</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+/*SCroll not working*/
+*{box-sizing:border-box;}	
+
+.sddiv{background-color:black;width:20%;display:inline-block;float:left;text-align:center;height:40px;border-bottom:3px solid white;}
+.menu{font-size:30px;text-decoration:none;color:rgb(0,220,0);}
+		
+	#tri:hover{
+		color:rgb(0,220,0);margin:0px 13px;font-size:40px;padding:5px 20px;
+		transition-duration:0.7s;
+		background-color:black;
+	}
+	.menu:hover{color:white;		transition-duration:0.5s;   background-color:black;}
+	
+	
+	
+	#ove{
+		background-image:url("https://www.pixelstalk.net/wp-content/uploads/2016/05/Black-Music-HD-Wallpapers-620x349.png");
+		text-align:center;
+		background-position:center;
+		background-repeat:no-repeat;
+		background-size:cover;		
+		height:auto;
+		background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),no-repeat center/cover url("https://www.pixelstalk.net/wp-content/uploads/2016/05/Black-Music-HD-Wallpapers-620x349.png") ;
+	}
+	
+	#vid{
+		background-color:white;
+		text-align:center;		
+	}
+	
+	#mus{
+		background-image:url("https://wallpapercave.com/wp/qh4vNT0.jpg");
+		text-align:center;
+		background-position:center;
+		background-repeat:no-repeat;
+		background-size:cover;		
+		height:auto;
+		margin:0px;
+	}
+	
+	#tak{
+		background-image:url("https://images.pexels.com/photos/7477/night-trees-stars.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+		text-align:center;
+		background-position:center;
+		background-repeat:no-repeat;
+		background-size:cover;		
+		height:auto;
+	}
+	
+	#rdmo{font-size:30px;margin:0px auto;width:100px;height:100px;background-color:blue;color:white;padding:10px 20px;transition: width 1s, height 1s, transform 1s, background-color 2s;}
+	#rdmo:hover {width: 200px; height: 200px; transform:rotate(360deg);background-color:green;}
+	#rrrr{display:none;font-size:20px;}
+	#tri{margin:0px 13px;border:0;font-size:30px;background-color:red;color:white;padding:10px 20px;text-decoration:none;}
+	
+	.buttonload{font-size:20px;padding:10px 40px;}
+	
+	
+	#modfor{
+	width:600px;
+	position:fixed;
+	text-align:center;
+	top:0;left:350px;
+	z-index:1;
+	background-color:rgba(100,70,67,0.99);
+	display:none;
+	}
+	#login{font-size:70px;color:rgb(0,220,0);background-color:black;}
+
+#logava{
+	width:200px;
+	height:200px;
+	border-radius:50%;
+}	
+
+#ove::after, #mus::after, #vid::after, #gc::after{margin:0px;}
+
+#menuhead{position:sticky;top:0;}
+#ovehead{font-size:160px;color:rgb(0,220,0);}
+#vidhead{font-size:120px;}
+#mushead{font-size:120px;color:rgb(220,208,67);}
+#gcimg{width:50%;float:left;}
+#gchead{width:50%;float:left;font-size:50px;margin:40px 0px;}
+#gcbody{width:50%;float:left;font-size:30px;margin:20px 0px;border-bottom:3px double maroon;}
+.last{width:33%;}
+#box{width:30px;height:15px;background-color:black;border-radius:10px;position:relative;left:280px;}
+#slider{width:15px;height:15px;background-color:yellow;border-radius:10px;float:left;}
+#pix{display:none;position:sticky;bottom:10;left:1225;z-index:90;height:38px;width:45px;background-color:pink;border:4px solid black;font-size:15px;padding:5px;}
+
+
+@media only screen and (max-width:600px){
+	#ovehead,#vidhead,#mushead,#gchead{font-size:60px;}
+	#menuhead{position:relative;}
+	#gcimg{width:100%;}
+	#gchead{width:100%;}
+	*{width:100%;}
+	.sddiv{width:100%;}
+	#tri{margin:0px 0px;border:0;font-size:20px;background-color:red;color:white;padding:10px 20px;text-decoration:none;}
+	#vidimg{width:100%;}
+	.buttonload{font	-size:20px;padding:10px 0px;}
+	#gcbody{width:100%;;font-size:22px;margin:20px 0px;border-bottom:3px double maroon;}
+	.last{width:100%;}
+	#modfor{width:100%;height:100%;text-align:center;position:fixed;top:0;left:0;z-index:1;background-color:rgba(100,70,67,0.99);display:none;}
+	#login,#break{display:none;}
+	#logava{width:50;height:50;}
+	}
+}
+
+
+</style>
+<script type="text/javascript">
+	 var inc=0;var rrrr;
+ function myFunction() {
+    inc=inc+1;
+    document.getElementById("yupp").innerHTML=inc;    
+ }
+ 
+ function passSee(){
+	  var slider = document.getElementById("slider");
+    var box = document.getElementById("box");
+    var pass=document.getElementById("pass");
+
+    if(slider.style["float"]==='left'){
+    	slider.style["float"]='right';
+    	pass.type="text";
+    	}
+    	else{
+    		slider.style["float"]='left';
+    		pass.type="password";
+    		}
+}
+ 
+ function cks(){
+  var x=navigator.cookieEnabled;
+  var nt;
+  if(x){
+  	nt=' ';
+  }
+  else{
+  nt='not';
+  }
+ 	alert("Your cookie is"+nt+"enabled");
+ } 
+function modfon(){
+		document.getElementById("modfor").style.display="block";
+}
+function modfoff(){
+		document.getElementById("modfor").style.display="none";
+}
+function scrolled(){
+	var cont=document.getElementById("cont");
+	if(cont.scrollTop>900)
+		document.getElementById("pix").style['display']="block";
+	if(cont.scrollTop<900)
+		document.getElementById("pix").style['display']="none";		
+}
+function scrollToTop(){
+	   var cont=document.getElementById("cont");
+	   cont.scrollTop=0; 
+}
+
+function readMore(){
+	rrrr=document.getElementById("rrrr");
+	rrrr.style["display"]='block';
+}
+function readLess(){
+	rrrr=document.getElementById("rrrr");
+	rrrr.style["display"]='none';
+}
+</script>					
+
+
+
+</head>
+
+<body onload="cks()" onscroll="scrolled()" id="cont">
+
+<div id="menuhead">
+	<div class="sddiv"><a class="menu" href=".menu" title="prTunes">prTunes</a></div>
+	<div class="sddiv"><a class="menu" href="#ove" title="Overview"><i class="fa fa-home"></i>Overview</a></div>
+	<div class="sddiv"><a class="menu" href="#vid" title="Video"><i class="fa fa-video-camera"></i>Video</a></div>
+	<div class="sddiv"><a class="menu" href="#mus" title="Music"><i class="fa fa-music"></i>Music</a></div>
+	<div class="sddiv"><a class="menu" href="#gc" title="Gift Cards">Gift Cards</a></div>
+</div><br><br>
+
+<div id='ove' ><br><br><br><br><br><br>
+		<span id="ovehead">prTunes</span><br><br><br>
+		<span style="font-size:35px;color:olive;">Your music, movies, and TV shows take center stage.</span><br><br><br>
+		<span style="font-size:22px;color:white;">prTunes is the best way to organize and enjoy the music, movies, and TV shows you already have — and shop for the ones you want.<br>
+		 Enjoy all the entertainment myTunes has to offer on your Mac and PC.</span><br><br><br><br><br><br>
+</div>
+
+<div id='vid'><br><br>
+	<span id="vidhead">Video</span><br><br><br>
+	<span style="font-size:22px;color:black;">With over 100,000 movies and TV shows to choose from, there’s always something great to watch on myTunes and if you watch on Orange TV 4K, you’ll be able to enjoy a tremendous selection of your favorite content in 4K HDR. So get ready to enjoy episodes of your favorite TV shows or hit movies you’ve been waiting to see — anytime, anywhere. Just tap to play, or even download if you’re going somewhere you won’t have Wi-Fi.</span><br><br><br><br>
+	<!--<div id="rdmo" onmouseover="readMore()" onmouseout="readLess()">Read More<span id="rrrr" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem veniam nobis, nisi ut expedita</span></div><br><br><br> -->
+	<span style="font-size:20px;color:maroon;">prTunes Video is available in myTunes, and for iOS and Android devices.</span><br>
+	<img src='https://sutoprise.files.wordpress.com/2016/10/cloud-computing-laptop-smartphone-tablet.jpg?w=775.jpg' alt='tabs&mobiles' id='vidimg'>
+</div>	
+
+<div id='mus'><br><br>
+	<span id="mushead">Music</span><br><br><br>
+	<span style="font-size:35px;color:maroon;">45 million songs. Zero ads.</span><br><br><br><br><br>
+	<span style="font-size:22px;color:white;">Stream over 45 million songs, ad-free. Or download albums and tracks to listen to offline. All the music in your personal myTunes library — no matter where it came from — lives right alongside the Orange Music catalog. Start your free three-month trial with no commitment, and cancel anytime.</span><br><br><br>
+	<button id='tri' onclick='modfon()'>LOGIN NOW</button><br><br>
+</div>
+
+<div id='gc'   style='content: "";clear: both;display: table;margin:0px 0px 20px;'>
+	<div id="gcimg"><img style="width:100%;height:500px;object-fit:fill;" src='https://previews.123rf.com/images/aerynrei/aerynrei1710/aerynrei171000036/88405145-vector-set-of-modern-gift-vouchers-with-curved-corners-red-small-bows-and-ribbons-layout-for-gift-ca.jpg'></div>
+	<div id="gchead">Gift Cards</div>
+	<div id="gcbody">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque expedita tempore quasi omnis a aut et totam illo fuga accusamus dolorum vero, ut harum consectetur. Minima molestias officiis culpa non sed dicta itaque. Et aliquam illo obcaecati molestias veritatis porro<br>
+	<br>Already have an Orange MyTunes Music Gift Card?</div>
+	<button style="font-size:25px;background-color:pink;">Redeem</button>
+</div>
+
+<div id="tak"><br><br><br><br><br><br><br><br>
+	<span style="font-size:40px;color:rgb(220,208,67);">A world of entertainment. Available wherever you are.</span><br><br><br><br>
+	<span style="font-size:20px;color:white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem veniam nobis, nisi ut expedita, doloribus reprehenderit explicabo non velit repellat alias saepe inventore repellendus? Molestias suscipit eos tempora? Quae quaerat cumque in veritatis impedit dolorum sapiente recusandae minima quo aperiam quam, excepturi quasi totam ad quas? Ipsam laudantium soluta delectus!</span><br><br><br><br><br>
+	<button  onclick="myFunction()" style="font-size:25px;background-color:pink;">Buy Premium Version</button>
+	<p style="font-size:13px;color:white;font-size:25px">Sells : <span id="yupp">0</span>k</p>
+</div>
+
+<div style="text-align:center;padding:20px 0px;background-color:rgba(0,220,0,0.3);">
+	<div style="font-size:30px;color:royalblue;">Follow us on:</div><br>
+	<a href="https://google.com" class="buttonload" title="Facebook">
+  <i class="fa fa-facebook-square" style="font-size:60px;" ></i></a>
+  
+  <a href="https://google.com" class="buttonload" title="Twitter">
+  <i class="fa fa-twitter-square" style="font-size:60px;" ></i></a>
+  
+  	<a href="https://google.com" class="buttonload" title="Instagram">
+  <i class="fa fa-instagram" style="font-size:60px;" ></i></a>
+</div>
+
+
+
+
+<div>
+	<div class='last' style="float:left;text-align:center;background-color:black;color:white;border-top:5px solid green;padding:20px 0px;"><div style='font-size:30px'><ins>Shop & Learn</ins><br></div>
+			 <div style="font-size:20px;">Music<br>Movies<br>Show<br>Apps<br>Gift Cards</div>
+	</div>
+ <div class='last' style="float:left;text-align:center;background-color:black;color:white;border-top:5px solid green;padding:20px 0px 41px;"><div style='font-size:30px'><ins>prStore</ins><br></div>
+			 <div style="font-size:20px;">Find a Store<br>Camp<br>Financing<br>Order Status<br></div>
+	</div>
+	<div  class='last' style="float:left;text-align:center;background-color:black;color:white;padding:20px 0px 41px;border-top:5px solid green;"><div style='font-size:30px'><ins>Education</ins><br></div>
+			 <div style="font-size:20px;">pr & Education<br>Shop for College<br>Shop for Business<br>Jobs</div>
+	</div>
+</div>
+
+ <div id="modfor">
+	<form action="/action_page.php" target=”_blank”>
+	<span id="login">LOGIN</span><br>
+	<img src='mus2.jpg' alt='userphoto' title="avatar" id="logava"><br>
+	<label for='uname' style="font-size:30px;color:yellow;">Username:</label>
+	<input type='text' id='uname' autofocus required >
+	<br>
+	<label for='pass' style="font-size:30px;color:yellow;">Password:</label>
+	<input type='password' id='pass' required>
+	<br>
+	<div style='display:inline;'>Show Password</div>
+	<div id="box" onclick="passSee()">
+	<div id='slider'></div>	
+	</div>
+	<input type='checkbox' id="rp">
+	<span for='rp'>Remember Password</span>
+	<br><br>
+	<input type='submit' id='sub' style="padding:5px;font-size:20px;background-color:rgb(0,220,0);border:0;" value="Login"></input>
+	<div id="break"><br></div>
+	</form>
+<a href="SignUpFinal.html" style="font-size:25px;color:white;float:right;">Create an account</a>
+<button style="padding:15px;float:left;background-color:olive;border:0;font:23px;" onclick='modfoff()' id='gob'>Go Back</button>
+</div>
+
+
+<button id='pix' onclick="scrollToTop()">TOP</button>
+
+</body>
+
+</html>
